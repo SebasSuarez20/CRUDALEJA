@@ -1,0 +1,97 @@
+<div class="content-main">
+  <div class="child">
+    <div class="card text-center">
+      <div class="card-header">
+        <strong>Lista de usuarios</strong>
+      </div>
+      <div class="card-body">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Nombre</th>
+              <th scope="col">Apellido</th>
+              <th scope="col">Direccion</th>
+              <th scope="col">Edad</th>
+              <th scope="col">Telefono</th>
+              <th scope="col">Acciones</th>
+            </tr>
+          </thead>
+          <tbody *ngFor="let item of Data">
+            <tr>
+              <th scope="row">{{item.idControl}}</th>
+              <td>{{item.name}}</td>
+              <td>{{item.surname}}</td>
+              <td>{{item.address}}</td>
+              <td>{{item.age}}</td>
+              <td>{{item.phone}}</td>
+              <td>
+                <button class="btn btn-warning btn-sm" (click)="GetFieldsForPUT(item)"><i
+                    class="fa-solid fa-pen-to-square"></i></button>
+                <small>&nbsp;</small>
+                <button class="btn btn-danger btn-sm" (click)="DeleteAllUser(item.idControl)"><i
+                    class="fa-solid fa-trash"></i></button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="card-footer text-muted">
+        <div style="display: flex;justify-content: center;">
+          <small>Pag 1</small>
+        </div>
+        <div style="display: flex;justify-content: flex-end;">
+          <div>
+            <button class="btn btn-success btn-sm" [disabled]="this.DisabledPrevious"
+              (click)="this.PreviousPage()">Anterior</button>
+          </div>
+          <small>&nbsp;</small>
+          <div>
+            <button class="btn btn-danger btn-sm" id="btn-next" [disabled]="this.DisabledNext"
+              (click)="this.NextPage()">Siguiente</button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="child">
+    <div class="card">
+      <div class="card-body">
+        <div style="display: flex;flex-direction: row;">
+          <div style="background: red;width: 20%;position: relative;top: -10px;">
+            <img src="../../assets/presentacion.gif" style="width: 100%;" alt="">
+          </div>
+          <div style="position: relative;top: 35px;left: 20px;">
+            <h4 align="center">Crear usuario</h4>
+          </div>
+        </div>
+
+        <div style="z-index: 1000;position: relative;top: 10px;">
+          <form [formGroup]="this.FormUser">
+            <input type="text" class="form-control" formControlName="name" id="exampleInputEmail1"
+              aria-describedby="emailHelp" placeholder="Ingresar nombre">
+            <small>&nbsp;</small>
+            <input type="text" class="form-control" formControlName="surname" id="exampleInputEmail1"
+              aria-describedby="emailHelp" placeholder="Ingresar Apellido">
+            <small>&nbsp;</small>
+            <input type="text" class="form-control" formControlName="address" id="exampleInputEmail1"
+              aria-describedby="emailHelp" placeholder="Ingresar Direccion">
+            <small>&nbsp;</small>
+            <input type="text" class="form-control" formControlName="age" id="exampleInputEmail1"
+              aria-describedby="emailHelp" placeholder="Ingresar edad"
+              onkeypress="if(event.keyCode<48 || event.keyCode>59){return false;}">
+            <small>&nbsp;</small>
+            <input type="text" class="form-control" formControlName="phone" id="exampleInputEmail1"
+              aria-describedby="emailHelp" placeholder="Ingresar telefono"
+              onkeypress="if(event.keyCode<48 || event.keyCode>59){return false;}">
+            <small>&nbsp;</small>
+            <br>
+            <button type="button" class="btn btn-primary btn-lg btn-block btn-sm" (click)="this.Onsubmit()">Enviar
+              informacion</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
